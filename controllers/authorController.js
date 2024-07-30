@@ -143,12 +143,8 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
 // Display Author update form on GET.
 exports.author_update_get = asyncHandler(async (req, res, next) => {
   const author = await Author.findById(req.params.id).exec();
-  console.log(author);
-
   dob = DateTime.fromJSDate(author.date_of_birth).toISODate();
   dod = DateTime.fromJSDate(author.date_of_death).toISODate();
-  
-  console.log(DateTime.fromJSDate(author.date_of_birth).toISODate());
   res.render('author_form', {title: "Update Author", author: author, dateOfBirth: dob, dateOfDeath: dod});
 });
 
@@ -193,7 +189,7 @@ exports.author_update_post = [
       if (!errors.isEmpty()) {
         // There are errors. Render form again with sanitized values/errors messages.
         res.render("author_form", {
-          title: "Create Author",
+          title: "Update Author",
           author: author,
           errors: errors.array(),
         });
