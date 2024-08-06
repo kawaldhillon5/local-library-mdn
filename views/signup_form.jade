@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    h1= title
+
+    form(method='POST')
+        div.form-group
+            label(for='user_name') User Name:
+            input#user_name.form-control(type='text', placeholder='abc' name='user_name' required value=(undefined===user ? '' : user.userName))
+        div.form-group
+            label(for='user_email') Email:
+            input#user_email.form-control(type='email', placeholder='abc@email.com' name='user_email' required value=(undefined===user ? '' : user.userEmail))
+        div.form-group
+            label(for='user_password') Password:
+            input#user_password.form-control(type='password', placeholder='****' name='user_password' required)
+        div.form-group    
+            label(for='isAdmin') Admin
+            div
+                div(style='display: inline; padding-right:10px;')
+                    input#isAdmin.checkbox-input(type='checkbox', name='isAdmin')
+        button.btn.btn-primary(type='submit') Create
+    
+    if errors
+    ul
+      for error in errors
+        li!= error.msg
+
+
